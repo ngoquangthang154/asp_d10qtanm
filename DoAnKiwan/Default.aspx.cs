@@ -51,7 +51,7 @@ public partial class _Default : System.Web.UI.Page
 
     private void sanphammoi()
     {
-        SqlConnection conn = new SqlConnection(conStr);
+        using (SqlConnection conn = new SqlConnection(conStr)) { 
         string sql = "SELECT * FROM product ORDER BY product_id DESC";
         SqlDataAdapter dt = new SqlDataAdapter(sql, conn);
         DataSet ds = new DataSet();
@@ -65,6 +65,8 @@ public partial class _Default : System.Web.UI.Page
         }
         conn.Close();
         conn.Dispose();
+        }
+       
 
     } // end void sanphamoi
 
